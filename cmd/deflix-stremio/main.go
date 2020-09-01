@@ -17,8 +17,8 @@ import (
 
 	"github.com/deflix-tv/go-stremio"
 	"github.com/deflix-tv/go-stremio/pkg/cinemeta"
+	"github.com/doingodswork/deflix-stremio/pkg/debrid/realdebrid"
 	"github.com/doingodswork/deflix-stremio/pkg/imdb2torrent"
-	"github.com/doingodswork/deflix-stremio/pkg/realdebrid"
 )
 
 const (

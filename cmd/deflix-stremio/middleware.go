@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber"
 	"go.uber.org/zap"
 
-	"github.com/doingodswork/deflix-stremio/pkg/realdebrid"
+	"github.com/doingodswork/deflix-stremio/pkg/debrid/realdebrid"
 )
 
 // createTokenMiddleware creates a middleware that checks the validity of RealDebrid API tokens.

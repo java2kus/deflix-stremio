@@ -24,6 +24,7 @@ type config struct {
 	BaseURLibit       string        `json:"baseURLibit"`
 	BaseURLrarbg      string        `json:"baseURLrarbg"`
 	BaseURLrd         string        `json:"baseURLrd"`
+	BaseURLad         string        `json:"baseURLad"`
 	LogLevel          string        `json:"logLevel"`
 	LogFoundTorrents  bool          `json:"logFoundTorrents"`
 	RootURL           string        `json:"rootURL"`
@@ -50,6 +51,7 @@ func parseConfig(logger *zap.Logger) config {
 		baseURLibit       = flag.String("baseURLibit", "https://ibit.am", "Base URL for ibit")
 		baseURLrarbg      = flag.String("baseURLrarbg", "https://torrentapi.org", "Base URL for RARBG")
 		baseURLrd         = flag.String("baseURLrd", "https://api.real-debrid.com", "Base URL for RealDebrid")
+		baseURLad         = flag.String("baseURLad", "https://api.alldebrid.com", "Base URL for AllDebrid")
 		logLevel          = flag.String("logLevel", "debug", `Log level to show only logs with the given and more severe levels. Can be "debug", "info", "warn", "error".`)
 		logFoundTorrents  = flag.Bool("logFoundTorrents", false, "Set to true to log each single torrent that was found by one of the torrent site clients (with DEBUG level)")
 		rootURL           = flag.String("rootURL", "https://www.deflix.tv", "Redirect target for the root")
@@ -166,6 +168,13 @@ func parseConfig(logger *zap.Logger) config {
 		}
 	}
 	result.BaseURLrd = *baseURLrd
+
+	if !isArgSet("baseURLad") {
+		if val, ok := os.LookupEnv(*envPrefix + "BASE_URL_AD"); ok {
+			*baseURLrd = val
+		}
+	}
+	result.BaseURLad = *baseURLad
 
 	if !isArgSet("logLevel") {
 		if val, ok := os.LookupEnv(*envPrefix + "LOG_LEVEL"); ok {
